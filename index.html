@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرجع فتاوای اسلامی | Fatawa Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0f9f0',
+                            100: '#dcf0dc',
+                            200: '#bae0ba',
+                            300: '#8cc98c',
+                            400: '#5aad5a',
+                            500: '#3d8b3d',
+                            600: '#2d6e2d',
+                            700: '#255825',
+                            800: '#1f451f',
+                            900: '#1a391a',
+                        },
+                        gold: {
+                            400: '#d4af37',
+                            500: '#c5a028',
+                            600: '#b08d1e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { scroll-behavior: smooth; }
+        body { font-family: 'Vazirmatn', sans-serif; }
+        .glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+        }
+        .search-focus:focus {
+            box-shadow: 0 0 0 4px rgba(61, 139, 61, 0.15);
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233d8b3d' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .modal-enter {
+            animation: modalEnter 0.3s ease-out;
+        }
+        @keyframes modalEnter {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen pattern">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass border-b border-gray-200/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-800 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-primary-800">مرجع فتاوا</h1>
+                        <p class="text-xs text-gray-500">بنگاه نشر فتاوای اسلامی</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="#" onclick="showSection('home')" class="text-gray-600 hover:text-primary-700 font-medium transition">صفحه اصلی</a>
+                    <a href="#" onclick="showSection('fatawa')" class="text-gray-600 hover:text-primary-700 font-medium transition">فتاوا</a>
+                    <a href="#" onclick="showSection('about')" class="text-gray-600 hover:text-primary-700 font-medium transition">درباره ما</a>
+                </div>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-gray-100">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+            <div class="px-4 py-3 space-y-2">
+                <a href="#" onclick="showSection('home'); toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-gray-50">صفحه اصلی</a>
+                <a href="#" onclick="showSection('fatawa'); toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-gray-50">فتاوا</a>
+                <a href="#" onclick="showSection('about'); toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-gray-50">درباره ما</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-24 pb-12 md:pt-32 md:pb-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-primary-50 text-primary-700 rounded-full text-sm font-medium mb-6 border border-primary-200">
+                <span class="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></span>
+                بانک جامع فتاوای شرعی
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
+                مرجع معتبر <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-800">فتاوای اسلامی</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl mx-auto leading-relaxed">
+                به سادگی به هزاران فتوی معتبر از مراجع عظام و علمای برجسته دسترسی پیدا کنید. جستجو، مطالعه و اشتراک فتاوا در یک بستر مدرن و کاربرپسند.
+            </p>
+            
+            <!-- Search Box -->
+            <div class="max-w-2xl mx-auto relative">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="جستجو در فتاوا... (مثلاً: نماز، روزه، زکات)" 
+                        class="w-full px-6 py-4 pr-14 text-lg bg-white border-2 border-gray-200 rounded-2xl search-focus outline-none transition-all"
+                        oninput="handleSearch(this.value)"
+                    >
+                    <svg class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="flex flex-wrap justify-center gap-8 mt-12">
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-primary-700" id="totalFatawa">0</div>
+                    <div class="text-sm text-gray-500 mt-1">فتوی ثبت شده</div>
+                </div>
+                <div class="w-px h-12 bg-gray-200 hidden md:block"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-primary-700" id="totalCategories">0</div>
+                    <div class="text-sm text-gray-500 mt-1">موضوع مختلف</div>
+                </div>
+                <div class="w-px h-12 bg-gray-200 hidden md:block"></div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold text-primary-700" id="totalScholars">0</div>
+                    <div class="text-sm text-gray-500 mt-1">عالم و مرجع</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-8 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-3" id="categoryFilters">
+                <!-- Categories will be inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Fatawa Grid -->
+    <section id="fatawaSection" class="py-8 px-4 pb-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-900">آخرین فتاوا</h2>
+                <div class="text-sm text-gray-500" id="resultsCount"></div>
+            </div>
+            
+            <div id="fatawaGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Cards will be inserted here -->
+            </div>
+
+            <div id="noResults" class="hidden text-center py-20">
+                <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h3 class="text-lg font-medium text-gray-900 mb-2">نتیجه‌ای یافت نشد</h3>
+                <p class="text-gray-500">لطفاً عبارت دیگری را جستجو کنید یا فیلتر را تغییر دهید.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="aboutSection" class="hidden py-12 px-4 pb-20">
+        <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 p-8 md:p-12">
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <svg class="w-8 h-8 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">درباره مرجع فتاوا</h2>
+            </div>
+            <div class="prose prose-lg max-w-none text-gray-600 leading-relaxed space-y-4">
+                <p>
+                    این وبسایت با هدف تسهیل دسترسی مسلمانان به فتاوای شرعی معتبر راه‌اندازی شده است. ما تلاش می‌کنیم تا با ارائه بستری مدرن و کاربرپسند، دسترسی به احکام دینی را برای همگان آسان کنیم.
+                </p>
+                <p>
+                    تمامی فتاوای موجود در این سایت از منابع معتبر اسلامی گردآوری شده و با دقت فراوان ثبت و طبقه‌بندی گردیده‌اند.
+                </p>
+                <div class="bg-primary-50 rounded-xl p-6 mt-6 border border-primary-100">
+                    <h3 class="font-bold text-primary-800 mb-2">نکته مهم:</h3>
+                    <p class="text-primary-700 text-sm">
+                        این سایت صرفاً یک بانک اطلاعاتی است. برای مسائل شرعی حساس، حتماً با علماء مشورت کنید.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-gray-500 text-sm">
+                مرجع فتاوای اسلامی © 1405 - تمامی حقوق محفوظ است
+            </p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="fatwaModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeModal()"></div>
+        <div class="relative min-h-screen flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto modal-enter">
+                <div class="sticky top-0 bg-white border-b border-gray-100 px-6 py-4 flex justify-between items-center rounded-t-3xl">
+                    <div class="flex items-center gap-3">
+                        <span id="modalCategory" class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-sm font-medium"></span>
+                        <span id="modalDate" class="text-sm text-gray-400"></span>
+                    </div>
+                    <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-full transition">
+                        <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-6 md:p-8">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center text-white font-bold text-lg" id="modalScholarAvatar"></div>
+                        <div>
+                            <h3 id="modalScholar" class="font-bold text-gray-900 text-lg"></h3>
+                            <p class="text-sm text-gray-500">مرجع فتوا</p>
+                        </div>
+                    </div>
+                    <h2 id="modalTitle" class="text-2xl font-bold text-gray-900 mb-6 leading-relaxed"></h2>
+                    <div class="prose max-w-none">
+                        <div class="bg-gray-50 rounded-xl p-6 mb-6 border-r-4 border-primary-500">
+                            <h4 class="font-bold text-gray-700 mb-2">سؤال:</h4>
+                            <p id="modalQuestion" class="text-gray-600 leading-relaxed"></p>
+                        </div>
+                        <div class="bg-primary-50 rounded-xl p-6 border-r-4 border-gold-500">
+                            <h4 class="font-bold text-primary-800 mb-2">جواب:</h4>
+                            <p id="modalAnswer" class="text-primary-900 leading-relaxed"></p>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex gap-3">
+                        <button onclick="shareFatwa()" class="flex-1 bg-primary-600 text-white py-3 rounded-xl font-medium hover:bg-primary-700 transition flex items-center justify-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"/>
+                            </svg>
+                            اشتراک‌گذاری
+                        </button>
+                        <button onclick="window.print()" class="px-6 py-3 border-2 border-gray-200 rounded-xl font-medium hover:bg-gray-50 transition flex items-center gap-2">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                            </svg>
+                            چاپ
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="fatawa-data.js"></script>
+    <script>
+        let currentFatawa = [];
+        let activeCategory = 'all';
+        let searchQuery = '';
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            currentFatawa = [...fatawaData];
+            renderCategories();
+            renderFatawa();
+            updateStats();
+        });
+
+        function updateStats() {
+            document.getElementById('totalFatawa').textContent = fatawaData.length;
+            const categories = [...new Set(fatawaData.map(f => f.category))];
+            document.getElementById('totalCategories').textContent = categories.length;
+            const scholars = [...new Set(fatawaData.map(f => f.scholar))];
+            document.getElementById('totalScholars').textContent = scholars.length;
+        }
+
+        function renderCategories() {
+            const categories = [...new Set(fatawaData.map(f => f.category))];
+            const container = document.getElementById('categoryFilters');
+            
+            let html = `
+                <button onclick="filterCategory('all')" 
+                    class="px-5 py-2 rounded-full text-sm font-medium transition-all ${activeCategory === 'all' ? 'bg-primary-600 text-white shadow-lg shadow-primary-200' : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'}">
+                    همه
+                </button>
+            `;
+            
+            categories.forEach(cat => {
+                const isActive = activeCategory === cat;
+                html += `
+                    <button onclick="filterCategory('${cat}')" 
+                        class="px-5 py-2 rounded-full text-sm font-medium transition-all ${isActive ? 'bg-primary-600 text-white shadow-lg shadow-primary-200' : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'}">
+                        ${cat}
+                    </button>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        function filterCategory(category) {
+            activeCategory = category;
+            renderCategories();
+            applyFilters();
+        }
+
+        function handleSearch(query) {
+            searchQuery = query.toLowerCase();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            currentFatawa = fatawaData.filter(f => {
+                const matchesCategory = activeCategory === 'all' || f.category === activeCategory;
+                const matchesSearch = !searchQuery || 
+                    f.title.toLowerCase().includes(searchQuery) ||
+                    f.question.toLowerCase().includes(searchQuery) ||
+                    f.answer.toLowerCase().includes(searchQuery) ||
+                    f.scholar.toLowerCase().includes(searchQuery);
+                return matchesCategory && matchesSearch;
+            });
+            renderFatawa();
+        }
+
+        function renderFatawa() {
+            const grid = document.getElementById('fatawaGrid');
+            const noResults = document.getElementById('noResults');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            resultsCount.textContent = `${currentFatawa.length} فتوی یافت شد`;
+            
+            if (currentFatawa.length === 0) {
+                grid.innerHTML = '';
+                noResults.classList.remove('hidden');
+                return;
+            }
+            
+            noResults.classList.add('hidden');
+            
+            grid.innerHTML = currentFatawa.map((fatwa, index) => `
+                <div class="bg-white rounded-2xl p-6 border border-gray-100 card-hover cursor-pointer fade-in" 
+                     style="animation-delay: ${index * 0.05}s"
+                     onclick="openModal(${fatwa.id})">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="px-3 py-1 bg-primary-50 text-primary-700 rounded-full text-xs font-medium">
+                            ${fatwa.category}
+                        </span>
+                        <span class="text-xs text-gray-400">${fatwa.date}</span>
+                    </div>
+                    <h3 class="font-bold text-gray-900 mb-3 line-clamp-2 leading-relaxed">${fatwa.title}</h3>
+                    <p class="text-gray-500 text-sm line-clamp-3 mb-4 leading-relaxed">${fatwa.question}</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 bg-gradient-to-br from-gold-400 to-gold-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                                ${fatwa.scholar.charAt(0)}
+                            </div>
+                            <span class="text-sm font-medium text-gray-700">${fatwa.scholar}</span>
+                        </div>
+                        <span class="text-primary-600 text-sm font-medium flex items-center gap-1">
+                            مطالعه
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(id) {
+            const fatwa = fatawaData.find(f => f.id === id);
+            if (!fatwa) return;
+            
+            document.getElementById('modalTitle').textContent = fatwa.title;
+            document.getElementById('modalQuestion').textContent = fatwa.question;
+            document.getElementById('modalAnswer').textContent = fatwa.answer;
+            document.getElementById('modalScholar').textContent = fatwa.scholar;
+            document.getElementById('modalScholarAvatar').textContent = fatwa.scholar.charAt(0);
+            document.getElementById('modalCategory').textContent = fatwa.category;
+            document.getElementById('modalDate').textContent = fatwa.date;
+            
+            document.getElementById('fatwaModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('fatwaModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function shareFatwa() {
+            const title = document.getElementById('modalTitle').textContent;
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: `فتوی: ${title}`,
+                    url: window.location.href
+                });
+            } else {
+                alert('لینک کپی شد!');
+            }
+        }
+
+        function showSection(section) {
+            const hero = document.getElementById('hero');
+            const fatawa = document.getElementById('fatawaSection');
+            const about = document.getElementById('aboutSection');
+            
+            if (section === 'home') {
+                hero.classList.remove('hidden');
+                fatawa.classList.remove('hidden');
+                about.classList.add('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (section === 'fatawa') {
+                hero.classList.add('hidden');
+                fatawa.classList.remove('hidden');
+                about.classList.add('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (section === 'about') {
+                hero.classList.add('hidden');
+                fatawa.classList.add('hidden');
+                about.classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>
