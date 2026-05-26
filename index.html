@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="مرجع جامع فتاوای اهل سنت - بانک فتاوی الشیخ الدکتور فضل الله عمر ممتاز با جستجوی پیشرفته">
+    <meta name="description" content="مرجع جامع فتاوای اهل سنت - بانک فتاوی الشیخ الدکتور فضل الله عمر ممتاز">
     <meta name="theme-color" content="#2d5e2d">
     <title>مرجع فتاوای ممتاز | پایگاه فتاوی اهل سنت</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,755 +22,216 @@
                             50: '#eff6ef', 100: '#d9ead9', 200: '#b5d6b5',
                             300: '#8bbd8b', 400: '#5c9e5c', 500: '#3d7a3d',
                             600: '#2d5e2d', 700: '#234823', 800: '#1c3a1c', 900: '#163016'
-                        },
-                        gold: { 400: '#d4af37', 500: '#c5a028' }
+                        }
                     }
                 }
             }
         }
     </script>
     <style>
-        * { scroll-behavior: smooth; }
-        body { font-family: 'Vazirmatn', sans-serif; line-height: 1.9; }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-        .dark ::-webkit-scrollbar-thumb { background: #475569; }
-
-        .glass-nav {
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(226,232,240,0.5);
-        }
-        .dark .glass-nav {
-            background: rgba(10,17,35,0.92);
-            border-bottom: 1px solid rgba(51,65,85,0.5);
-        }
-
-        .hero-pattern {
-            background-color: #f0f7f0;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%232d5e2d' fill-opacity='0.05'%3E%3Cpath d='M40 0l8 8-8 8-8-8zm0 16l8 8-8 8-8-8zm16-16l8 8-8 8-8-8zM24 0l8 8-8 8-8-8zm32 32l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zM8 16l8 8-8 8-8-8zm48 16l8 8-8 8-8-8zM40 48l8 8-8 8-8-8zm16-16l8 8-8 8-8-8zm16 0l8 8-8 8-8-8zM24 48l8 8-8 8-8-8zM8 48l8 8-8 8-8-8zm48 16l8 8-8 8-8-8zM40 64l8 8-8 8-8-8zM24 64l8 8-8 8-8-8zM8 64l8 8-8 8-8-8z'/%3E%3C/g%3E%3C/svg%3E");
-        }
-        .dark .hero-pattern {
-            background-color: #0a1123;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%232d5e2d' fill-opacity='0.08'%3E%3Cpath d='M40 0l8 8-8 8-8-8zm0 16l8 8-8 8-8-8zm16-16l8 8-8 8-8-8zM24 0l8 8-8 8-8-8zm32 32l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zM8 16l8 8-8 8-8-8zm48 16l8 8-8 8-8-8zM40 48l8 8-8 8-8-8zm16-16l8 8-8 8-8-8zm16 0l8 8-8 8-8-8zM24 48l8 8-8 8-8-8zM8 48l8 8-8 8-8-8zm48 16l8 8-8 8-8-8zM40 64l8 8-8 8-8-8zM24 64l8 8-8 8-8-8zM8 64l8 8-8 8-8-8z'/%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .fatwa-card {
-            transition: transform 0.22s cubic-bezier(.4,0,.2,1), box-shadow 0.22s ease, border-top-color 0.22s ease;
-            border-top: 3px solid transparent;
-        }
-        .fatwa-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 24px 40px -12px rgba(45,94,45,0.13);
-            border-top-color: #2d5e2d;
-        }
-        .dark .fatwa-card:hover { box-shadow: 0 24px 40px -12px rgba(0,0,0,0.4); }
-
-        .modal-backdrop { animation: fadeIn 0.18s ease; }
-        .modal-box { animation: modalSlideUp 0.22s cubic-bezier(.4,0,.2,1); }
-        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-        @keyframes modalSlideUp { from { opacity:0; transform:translateY(24px) scale(0.97); } to { opacity:1; transform:translateY(0) scale(1); } }
-
-        .skeleton {
-            background: linear-gradient(90deg, #e2e8f0 25%, #f1f5f9 50%, #e2e8f0 75%);
-            background-size: 200% 100%;
-            animation: shimmer 1.4s infinite;
-            border-radius: 8px;
-        }
-        .dark .skeleton {
-            background: linear-gradient(90deg, #1e293b 25%, #243044 50%, #1e293b 75%);
-            background-size: 200% 100%;
-        }
-        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
-
-        .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-        .line-clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
-
-        .cat-pill { transition: all 0.18s ease; }
-        .cat-pill.active {
-            background: #2d5e2d;
-            color: white;
-            box-shadow: 0 4px 12px rgba(45,94,45,0.3);
-            border-color: #2d5e2d;
-        }
-
-        #searchInput:focus { box-shadow: 0 0 0 3px rgba(45,94,45,0.15); }
-
-        .bottom-nav { box-shadow: 0 -4px 20px rgba(0,0,0,0.08); }
-        .fatwa-answer { line-height: 2; }
-
-        /* Lucide icon size helper */
-        .ic { display:inline-flex; align-items:center; justify-content:center; }
-        .ic svg { width:1em; height:1em; }
+        *{scroll-behavior:smooth}
+        body{font-family:'Vazirmatn',sans-serif;line-height:1.9}
+        .glass-nav{background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(226,232,240,.5)}
+        .dark .glass-nav{background:rgba(10,17,35,.92);border-bottom:1px solid rgba(51,65,85,.5)}
+        .hero-pattern{background-color:#f0f7f0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%232d5e2d' fill-opacity='0.05'%3E%3Cpath d='M40 0l8 8-8 8-8-8zm0 16l8 8-8 8-8-8zm16-16l8 8-8 8-8-8zM24 0l8 8-8 8-8-8zm32 32l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zM8 16l8 8-8 8-8-8zm48 16l8 8-8 8-8-8zM40 48l8 8-8 8-8-8zm16-16l8 8-8 8-8-8zm16 0l8 8-8 8-8-8zM24 48l8 8-8 8-8-8zM8 48l8 8-8 8-8-8zm48 16l8 8-8 8-8-8zM40 64l8 8-8 8-8-8zM24 64l8 8-8 8-8-8zM8 64l8 8-8 8-8-8z'/%3E%3C/g%3E%3C/svg%3E")}
+        .dark .hero-pattern{background-color:#0a1123;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%232d5e2d' fill-opacity='0.08'%3E%3Cpath d='M40 0l8 8-8 8-8-8zm0 16l8 8-8 8-8-8zm16-16l8 8-8 8-8-8zM24 0l8 8-8 8-8-8zm32 32l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zm-16 0l8 8-8 8-8-8zM8 16l8 8-8 8-8-8zm48 16l8 8-8 8-8-8zM40 48l8 8-8 8-8-8zm16-16l8 8-8 8-8-8zm16 0l8 8-8 8-8-8zM24 48l8 8-8 8-8-8zM8 48l8 8-8 8-8-8zm48 16l8 8-8 8-8-8zM40 64l8 8-8 8-8-8zM24 64l8 8-8 8-8-8zM8 64l8 8-8 8-8-8z'/%3E%3C/g%3E%3C/svg%3E")}
+        .fatwa-card{transition:transform .22s ease,box-shadow .22s ease,border-top-color .22s ease;border-top:3px solid transparent}
+        .fatwa-card:hover{transform:translateY(-6px);box-shadow:0 24px 40px -12px rgba(45,94,45,.13);border-top-color:#2d5e2d}
+        .dark .fatwa-card:hover{box-shadow:0 24px 40px -12px rgba(0,0,0,.4)}
+        .line-clamp-2{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+        .line-clamp-3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+        .skeleton{background:linear-gradient(90deg,#e2e8f0 25%,#f1f5f9 50%,#e2e8f0 75%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:8px}
+        .dark .skeleton{background:linear-gradient(90deg,#1e293b 25%,#243044 50%,#1e293b 75%);background-size:200% 100%}
+        @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+        .cat-pill.active{background:#2d5e2d;color:#fff;border-color:#2d5e2d;box-shadow:0 4px 12px rgba(45,94,45,.3)}
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-slate-950 text-gray-800 dark:text-gray-200 transition-colors duration-300">
 
-    <!-- ========== NAVBAR ========== -->
-    <nav class="fixed top-0 w-full z-50 glass-nav transition-all">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-
-                <!-- Logo -->
-                <button onclick="showSection('home')" class="flex items-center gap-3 group">
-                    <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-800 rounded-xl flex items-center justify-center shadow-md">
-                        <i data-lucide="shield" class="w-5 h-5 text-white"></i>
-                    </div>
-                    <div class="text-start">
-                        <div class="text-[17px] font-extrabold text-primary-800 dark:text-primary-300 leading-tight">مرجع فتاوای ممتاز</div>
-                        <div class="text-[10px] text-gray-400 dark:text-gray-500 font-medium">پایگاه فتاوی اهل سنت و الجماعت</div>
-                    </div>
-                </button>
-
-                <!-- Desktop Nav -->
-                <div class="hidden md:flex items-center gap-1">
-                    <button onclick="showSection('home')" id="navHome"
-                        class="nav-link flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-gray-100 dark:hover:bg-slate-800">
-                        <i data-lucide="home" class="w-4 h-4"></i> صفحه اصلی
-                    </button>
-                    <button onclick="showSection('fatawa')" id="navFatawa"
-                        class="nav-link flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-gray-100 dark:hover:bg-slate-800">
-                        <i data-lucide="book-open" class="w-4 h-4"></i> فتاوی
-                    </button>
-                    <button onclick="showSection('about')" id="navAbout"
-                        class="nav-link flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-semibold transition-all hover:bg-gray-100 dark:hover:bg-slate-800">
-                        <i data-lucide="info" class="w-4 h-4"></i> درباره ما
-                    </button>
+<nav class="fixed top-0 w-full z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+            <a href="index.html" class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-primary-500 to-primary-800 rounded-xl flex items-center justify-center">
+                    <i data-lucide="shield" class="w-5 h-5 text-white"></i>
                 </div>
-
-                <!-- Actions -->
-                <div class="flex items-center gap-2">
-                    <button onclick="toggleMobileSearch()" class="md:hidden p-2.5 rounded-xl bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 transition">
-                        <i data-lucide="search" class="w-5 h-5"></i>
-                    </button>
-                    <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-gray-100 dark:bg-slate-800 hover:bg-gray-200 dark:hover:bg-slate-700 transition">
-                        <i data-lucide="sun" id="sunIcon" class="w-5 h-5 text-amber-500 hidden"></i>
-                        <i data-lucide="moon" id="moonIcon" class="w-5 h-5 text-slate-500 dark:text-slate-300"></i>
-                    </button>
+                <div>
+                    <div class="text-[17px] font-extrabold text-primary-800 dark:text-primary-300 leading-tight">مرجع فتاوای ممتاز</div>
+                    <div class="text-[10px] text-gray-400 dark:text-gray-500 font-medium">پایگاه فتاوی اهل سنت و الجماعت</div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Mobile Search Bar -->
-        <div id="mobileSearchBar" class="hidden px-4 pb-3">
-            <div class="relative">
-                <input type="text" id="mobileSearchInput" placeholder="جستجو در فتاوی..."
-                    class="w-full px-4 py-2.5 pr-10 bg-gray-100 dark:bg-slate-800 border border-transparent focus:border-primary-400 rounded-xl outline-none transition text-sm">
-                <i data-lucide="search" class="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-            </div>
-        </div>
-    </nav>
-
-    <!-- ========== HERO ========== -->
-    <section id="heroSection" class="hero-pattern pt-24 pb-16 md:pt-32 md:pb-20 px-4 text-center relative overflow-hidden">
-        <div class="absolute top-10 right-10 w-64 h-64 bg-primary-400/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-5 left-10 w-48 h-48 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none"></div>
-
-        <div class="max-w-4xl mx-auto relative z-10">
-            <!-- Badge -->
-            <div class="inline-flex items-center gap-2 bg-white/80 dark:bg-primary-900/50 backdrop-blur-sm border border-primary-200/50 dark:border-primary-800/50 px-5 py-2 rounded-full text-sm font-bold text-primary-700 dark:text-primary-300 mb-6 shadow-sm">
-                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
-                بانک جامع فتاوای شرعی اهل سنت
-            </div>
-
-            <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-gray-900 dark:text-white">
-                مرجع معتبر
-                <span class="text-transparent bg-clip-text bg-gradient-to-l from-primary-700 via-emerald-600 to-primary-500"> فتاوای اهل سنت</span>
-            </h1>
-            <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8 leading-loose">
-                دسترسی آسان به سوالات و جوابات شرعی از<br class="hidden sm:block">
-                <strong class="text-primary-700 dark:text-primary-300">الشیخ الدکتور فضل الله عمر ممتاز</strong>
-            </p>
-
-            <!-- Search -->
-            <div class="max-w-2xl mx-auto relative">
-                <input type="text" id="searchInput" placeholder="جستجو در فتاوی، موضوعات، سوالات..."
-                    class="w-full px-6 py-4 pr-14 text-base bg-white dark:bg-slate-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:border-primary-400 outline-none transition shadow-md">
-                <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-            </div>
-
-            <!-- Stats (بدون عالم) -->
-            <div class="flex justify-center items-center gap-8 md:gap-16 mt-10">
-                <div class="text-center">
-                    <div class="text-3xl md:text-4xl font-black text-primary-600 dark:text-primary-400" id="totalFatawa">۰</div>
-                    <div class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1">فتوی ثبت شده</div>
-                </div>
-                <div class="w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
-                <div class="text-center">
-                    <div class="text-3xl md:text-4xl font-black text-primary-600 dark:text-primary-400" id="totalCategories">۰</div>
-                    <div class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1">موضوع فقهی</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== CATEGORY FILTERS ========== -->
-    <section class="sticky top-16 z-40 bg-white/80 dark:bg-slate-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800/50 py-3 px-4">
-        <div class="max-w-7xl mx-auto overflow-x-auto">
-            <div class="flex gap-2 w-max mx-auto pb-0.5" id="categoryFilters"></div>
-        </div>
-    </section>
-
-    <!-- ========== FATAWA LIST ========== -->
-    <section id="fatawaSection" class="py-8 px-4 pb-28 md:pb-12">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-wrap justify-between items-center mb-6 gap-3">
-                <h2 class="text-xl md:text-2xl font-bold flex items-center gap-2">
-                    <span class="w-8 h-8 bg-primary-100 dark:bg-primary-900/40 rounded-lg flex items-center justify-center text-primary-700 dark:text-primary-400">
-                        <i data-lucide="scroll-text" class="w-4 h-4"></i>
-                    </span>
-                    فتاوی و سوالات شرعی
-                </h2>
-                <span id="resultsCount" class="bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-4 py-1.5 rounded-full text-sm font-bold"></span>
-            </div>
-
-            <!-- Skeleton -->
-            <div id="skeletonGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 space-y-3 border border-gray-100 dark:border-gray-800">
-                    <div class="skeleton h-5 w-24"></div>
-                    <div class="skeleton h-6 w-full"></div>
-                    <div class="skeleton h-4 w-full"></div>
-                    <div class="skeleton h-4 w-3/4"></div>
-                    <div class="skeleton h-9 w-full mt-4"></div>
-                </div>
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 space-y-3 border border-gray-100 dark:border-gray-800 hidden md:block">
-                    <div class="skeleton h-5 w-24"></div>
-                    <div class="skeleton h-6 w-full"></div>
-                    <div class="skeleton h-4 w-full"></div>
-                    <div class="skeleton h-4 w-3/4"></div>
-                    <div class="skeleton h-9 w-full mt-4"></div>
-                </div>
-                <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 space-y-3 border border-gray-100 dark:border-gray-800 hidden lg:block">
-                    <div class="skeleton h-5 w-24"></div>
-                    <div class="skeleton h-6 w-full"></div>
-                    <div class="skeleton h-4 w-full"></div>
-                    <div class="skeleton h-4 w-3/4"></div>
-                    <div class="skeleton h-9 w-full mt-4"></div>
-                </div>
-            </div>
-
-            <!-- Grid -->
-            <div id="fatawaGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
-
-            <!-- No Results -->
-            <div id="noResults" class="hidden text-center py-20">
-                <div class="w-20 h-20 bg-gray-100 dark:bg-slate-800 rounded-3xl flex mx-auto mb-4 items-center justify-center">
-                    <i data-lucide="search-x" class="w-9 h-9 text-gray-300 dark:text-gray-600"></i>
-                </div>
-                <h3 class="text-xl font-bold mb-2">نتیجه‌ای یافت نشد</h3>
-                <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">عبارت دیگری جستجو کنید یا دسته‌بندی دیگری انتخاب نمایید.</p>
-                <button onclick="clearFilters()" class="px-5 py-2.5 bg-primary-600 text-white rounded-xl text-sm font-bold hover:bg-primary-700 transition inline-flex items-center gap-2">
-                    <i data-lucide="x-circle" class="w-4 h-4"></i>
-                    پاک کردن فیلتر
-                </button>
-            </div>
-
-            <!-- Pagination -->
-            <div id="pagination" class="flex justify-center items-center gap-2 mt-10 flex-wrap"></div>
-        </div>
-    </section>
-
-    <!-- ========== ABOUT ========== -->
-    <section id="aboutSection" class="hidden py-12 px-4 pb-28 md:pb-12">
-        <div class="max-w-2xl mx-auto">
-            <div class="bg-white dark:bg-slate-800/90 rounded-3xl shadow-sm border border-gray-100 dark:border-gray-700/50 overflow-hidden">
-                <!-- Header -->
-                <div class="bg-gradient-to-l from-primary-700 to-emerald-700 p-8 text-center text-white">
-                    <div class="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mx-auto mb-4">
-                        <i data-lucide="book-open" class="w-10 h-10 text-white"></i>
-                    </div>
-                    <h2 class="text-2xl font-extrabold mb-1">درباره مرجع فتاوی</h2>
-                    <p class="text-primary-200 text-sm">پایگاه فتاوی اهل سنت و الجماعت</p>
-                </div>
-                <!-- Body -->
-                <div class="p-7 space-y-5">
-                    <p class="leading-loose text-gray-700 dark:text-gray-300 text-justify">
-                        این وبسایت با هدف دسترسی آسان به فتاوای معتبر
-                        <strong class="text-primary-700 dark:text-primary-400">الشیخ الدکتور فضل الله عمر ممتاز</strong>
-                        راه‌اندازی شده است. تمامی فتاوی از منابع خود شیخ گردآوری و در اختیار عموم قرار می‌گیرد.
-                    </p>
-                    <div class="bg-amber-50 dark:bg-amber-900/15 p-5 rounded-2xl border border-amber-200 dark:border-amber-800/40 flex gap-3">
-                        <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-600 dark:text-amber-400 mt-0.5 shrink-0"></i>
-                        <div>
-                            <p class="font-bold text-amber-700 dark:text-amber-400 mb-1">نکته مهم</p>
-                            <p class="text-sm text-gray-700 dark:text-gray-300 leading-loose">استفاده از این پایگاه جنبه اطلاع‌رسانی دارد. برای مسائل اختصاصی و مهم، مستقیماً با خود شیخ مشورت نمایید.</p>
-                        </div>
-                    </div>
-                    <!-- Stats در درباره (بدون عالم) -->
-                    <div class="grid grid-cols-2 gap-4 pt-2">
-                        <div class="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-5 text-center">
-                            <div class="text-3xl font-black text-primary-700 dark:text-primary-400" id="aboutTotalFatawa">۰</div>
-                            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">فتوی ثبت شده</div>
-                        </div>
-                        <div class="bg-primary-50 dark:bg-primary-900/20 rounded-2xl p-5 text-center">
-                            <div class="text-3xl font-black text-primary-700 dark:text-primary-400" id="aboutTotalCats">۰</div>
-                            <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">موضوع فقهی</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== MODAL ========== -->
-    <div id="fatwaModal" class="fixed inset-0 z-[120] hidden modal-backdrop bg-black/60 backdrop-blur-sm overflow-y-auto">
-        <div class="min-h-screen flex items-start md:items-center justify-center p-0 md:p-4">
-            <div class="modal-box bg-white dark:bg-slate-900 w-full md:max-w-2xl md:rounded-3xl shadow-2xl overflow-hidden">
-
-                <!-- Modal Header -->
-                <div class="sticky top-0 bg-white dark:bg-slate-900 z-10 px-5 py-4 border-b dark:border-gray-800 flex justify-between items-center">
-                    <div class="flex flex-wrap items-center gap-2">
-                        <span id="modalCategory" class="bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 px-3 py-1 rounded-full text-xs font-bold"></span>
-                        <span id="modalDate" class="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-1">
-                            <i data-lucide="calendar" class="w-3 h-3"></i>
-                            <span id="modalDateText"></span>
-                        </span>
-                    </div>
-                    <button onclick="closeModal()" class="w-8 h-8 flex items-center justify-center rounded-full text-gray-400 hover:bg-gray-100 dark:hover:bg-slate-800 hover:text-gray-700 transition">
-                        <i data-lucide="x" class="w-4 h-4"></i>
-                    </button>
-                </div>
-
-                <!-- Modal Body -->
-                <div class="p-5 md:p-7">
-
-                    <!-- Title -->
-                    <h2 id="modalTitle" class="text-xl md:text-2xl font-extrabold mb-5 leading-relaxed dark:text-white"></h2>
-
-                    <!-- Question -->
-                    <div class="bg-amber-50 dark:bg-amber-900/15 border border-amber-200/70 dark:border-amber-800/40 p-5 rounded-2xl mb-4">
-                        <p class="text-xs font-bold text-amber-600 dark:text-amber-400 mb-2.5 flex items-center gap-1.5">
-                            <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
-                            سوال
-                        </p>
-                        <p id="modalQuestion" class="text-gray-800 dark:text-gray-200 leading-loose text-sm md:text-base"></p>
-                    </div>
-
-                    <!-- Answer -->
-                    <div class="bg-primary-50 dark:bg-primary-900/15 border border-primary-200/70 dark:border-primary-800/40 p-5 rounded-2xl">
-                        <p class="text-xs font-bold text-primary-700 dark:text-primary-400 mb-2.5 flex items-center gap-1.5">
-                            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
-                            پاسخ فتوا
-                        </p>
-                        <div id="modalAnswer" class="text-gray-800 dark:text-gray-100 leading-loose fatwa-answer text-sm md:text-base"></div>
-                    </div>
-
-                    <!-- Actions -->
-                    <div class="flex gap-3 mt-5">
-                        <button onclick="copyFatwaText()" class="flex-1 flex items-center justify-center gap-2 bg-primary-600 hover:bg-primary-700 text-white py-3 rounded-2xl font-bold text-sm transition active:scale-95">
-                            <i data-lucide="copy" class="w-4 h-4"></i>
-                            کپی متن فتوا
-                        </button>
-                        <button onclick="shareFatwa()" class="flex-1 flex items-center justify-center gap-2 border-2 border-gray-200 dark:border-gray-700 py-3 rounded-2xl font-bold text-sm hover:bg-gray-50 dark:hover:bg-slate-800 transition active:scale-95">
-                            <i data-lucide="share-2" class="w-4 h-4"></i>
-                            اشتراک‌گذاری
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- ========== BOTTOM NAV (Mobile) ========== -->
-    <nav class="fixed bottom-0 left-0 right-0 z-50 md:hidden bottom-nav bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800 px-2 py-1">
-        <div class="grid grid-cols-3 gap-1">
-            <button onclick="showSection('home')" id="mobileNavHome"
-                class="mobile-nav-btn flex flex-col items-center gap-1 py-2 px-3 rounded-xl transition-all text-gray-500 dark:text-gray-400">
-                <i data-lucide="home" class="w-5 h-5"></i>
-                <span class="text-[10px] font-bold">خانه</span>
-            </button>
-            <button onclick="showSection('fatawa')" id="mobileNavFatawa"
-                class="mobile-nav-btn flex flex-col items-center gap-1 py-2 px-3 rounded-xl transition-all text-gray-500 dark:text-gray-400">
-                <i data-lucide="book-open" class="w-5 h-5"></i>
-                <span class="text-[10px] font-bold">فتاوی</span>
-            </button>
-            <button onclick="showSection('about')" id="mobileNavAbout"
-                class="mobile-nav-btn flex flex-col items-center gap-1 py-2 px-3 rounded-xl transition-all text-gray-500 dark:text-gray-400">
-                <i data-lucide="info" class="w-5 h-5"></i>
-                <span class="text-[10px] font-bold">درباره</span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- ========== FOOTER ========== -->
-    <footer class="hidden md:block bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-gray-800 py-6">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-3 text-sm text-gray-400">
+            </a>
             <div class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-primary-600 rounded-lg flex items-center justify-center">
-                    <i data-lucide="shield" class="w-3.5 h-3.5 text-white"></i>
-                </div>
-                <span class="font-medium text-gray-600 dark:text-gray-400">مرجع فتاوای ممتاز</span>
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-gray-100 dark:bg-slate-800">
+                    <i data-lucide="sun" id="sunIcon" class="w-5 h-5 text-amber-500 hidden"></i>
+                    <i data-lucide="moon" id="moonIcon" class="w-5 h-5 text-slate-500 dark:text-slate-300"></i>
+                </button>
             </div>
-            <span>بر اساس فتوای الشیخ الدکتور فضل الله عمر ممتاز © ۱۴۰۴</span>
         </div>
-    </footer>
-
-    <!-- ========== TOAST ========== -->
-    <div id="toast" class="fixed bottom-24 md:bottom-6 left-1/2 -translate-x-1/2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-5 py-3 rounded-2xl shadow-xl z-[130] transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2 text-sm font-semibold whitespace-nowrap">
-        <i data-lucide="check" class="w-4 h-4 text-green-400 dark:text-green-600"></i>
-        <span id="toastMsg">متن فتوا کپی شد</span>
     </div>
+</nav>
 
-    <!-- ========== JAVASCRIPT ========== -->
-    <script>
-        // ============ State ============
-        let mainFatawa = [];
-        let activeCategory = 'all';
-        let searchQuery = '';
-        let currentModalFatwa = null;
-        let currentPage = 1;
-        const ITEMS_PER_PAGE = 12;
-        let searchTimer = null;
+<section class="hero-pattern pt-24 pb-16 md:pt-32 md:pb-20 px-4 text-center overflow-hidden">
+    <div class="max-w-4xl mx-auto">
+        <div class="inline-flex items-center gap-2 bg-white/80 dark:bg-primary-900/50 backdrop-blur-sm border border-primary-200/50 dark:border-primary-800/50 px-5 py-2 rounded-full text-sm font-bold text-primary-700 dark:text-primary-300 mb-6 shadow-sm">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+            بانک جامع فتاوای شرعی اهل سنت
+        </div>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold mb-4 leading-tight text-gray-900 dark:text-white">
+            مرجع معتبر
+            <span class="text-transparent bg-clip-text bg-gradient-to-l from-primary-700 via-emerald-600 to-primary-500"> فتاوای اهل سنت</span>
+        </h1>
+        <p class="text-base md:text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8 leading-loose">
+            دسترسی آسان به سوالات و جوابات شرعی از<br class="hidden sm:block">
+            <strong class="text-primary-700 dark:text-primary-300">الشیخ الدکتور فضل الله عمر ممتاز</strong>
+        </p>
+        <div class="max-w-2xl mx-auto relative">
+            <input type="text" id="searchInput" placeholder="جستجو در فتاوی، موضوعات، سوالات..."
+                class="w-full px-6 py-4 pr-14 text-base bg-white dark:bg-slate-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:border-primary-400 outline-none transition shadow-md">
+            <i data-lucide="search" class="w-5 h-5 text-gray-400 absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        </div>
+        <div class="flex justify-center items-center gap-8 md:gap-16 mt-10">
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-black text-primary-600 dark:text-primary-400" id="totalFatawa">۰</div>
+                <div class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1">فتوی ثبت شده</div>
+            </div>
+            <div class="w-px h-12 bg-gray-200 dark:bg-gray-700"></div>
+            <div class="text-center">
+                <div class="text-3xl md:text-4xl font-black text-primary-600 dark:text-primary-400" id="totalCategories">۰</div>
+                <div class="text-xs md:text-sm text-gray-500 dark:text-gray-400 mt-1">موضوع فقهی</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // ============ Init ============
-        function initApp() {
-            if (window.fatawaData && Array.isArray(window.fatawaData)) {
-                mainFatawa = window.fatawaData;
-            } else {
-                mainFatawa = [];
-            }
+<section class="sticky top-16 z-40 bg-white/80 dark:bg-slate-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800/50 py-3 px-4">
+    <div class="max-w-7xl mx-auto overflow-x-auto">
+        <div class="flex gap-2 w-max mx-auto pb-0.5" id="categoryFilters"></div>
+    </div>
+</section>
 
-            document.getElementById('skeletonGrid').style.display = 'none';
+<section class="py-8 px-4 pb-16">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex flex-wrap justify-between items-center mb-6 gap-3">
+            <h2 class="text-xl md:text-2xl font-bold flex items-center gap-2">
+                <span class="w-8 h-8 bg-primary-100 dark:bg-primary-900/40 rounded-lg flex items-center justify-center text-primary-700 dark:text-primary-400">
+                    <i data-lucide="scroll-text" class="w-4 h-4"></i>
+                </span>
+                فتاوی و سوالات شرعی
+            </h2>
+            <span id="resultsCount" class="bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-4 py-1.5 rounded-full text-sm font-bold"></span>
+        </div>
 
-            renderCategories();
-            applyFilters();
-            updateStats();
-            setupEvents();
-            loadTheme();
-            handleUrlHash();
+        <div id="skeletonGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 space-y-3 border border-gray-100 dark:border-gray-800"><div class="skeleton h-5 w-24"></div><div class="skeleton h-6 w-full"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-3/4"></div><div class="skeleton h-9 w-full mt-4"></div></div>
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 space-y-3 border border-gray-100 dark:border-gray-800 hidden md:block"><div class="skeleton h-5 w-24"></div><div class="skeleton h-6 w-full"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-3/4"></div><div class="skeleton h-9 w-full mt-4"></div></div>
+            <div class="bg-white dark:bg-slate-800 rounded-2xl p-6 space-y-3 border border-gray-100 dark:border-gray-800 hidden lg:block"><div class="skeleton h-5 w-24"></div><div class="skeleton h-6 w-full"></div><div class="skeleton h-4 w-full"></div><div class="skeleton h-4 w-3/4"></div><div class="skeleton h-9 w-full mt-4"></div></div>
+        </div>
 
-            // Init Lucide icons (must run after DOM ready)
-            if (window.lucide) lucide.createIcons();
-        }
+        <div id="fatawaGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
 
-        // ============ Events ============
-        function setupEvents() {
-            document.getElementById('searchInput').addEventListener('input', e => debounceSearch(e.target.value));
-            document.getElementById('mobileSearchInput').addEventListener('input', e => debounceSearch(e.target.value));
-            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-            document.getElementById('fatwaModal').addEventListener('click', function(e) {
-                if (e.target === this) closeModal();
-            });
-        }
+        <div id="noResults" class="hidden text-center py-20">
+            <div class="w-20 h-20 bg-gray-100 dark:bg-slate-800 rounded-3xl flex mx-auto mb-4 items-center justify-center">
+                <i data-lucide="search-x" class="w-9 h-9 text-gray-300 dark:text-gray-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-2">نتیجه‌ای یافت نشد</h3>
+            <p class="text-gray-500 dark:text-gray-400 text-sm mb-5">عبارت دیگری جستجو کنید یا دسته‌بندی دیگری انتخاب نمایید.</p>
+            <button onclick="clearFilters()" class="px-5 py-2.5 bg-primary-600 text-white rounded-xl text-sm font-bold hover:bg-primary-700 transition inline-flex items-center gap-2">
+                <i data-lucide="x-circle" class="w-4 h-4"></i>
+                پاک کردن فیلتر
+            </button>
+        </div>
 
-        function debounceSearch(val) {
-            clearTimeout(searchTimer);
-            searchTimer = setTimeout(() => handleSearch(val), 220);
-        }
+        <div id="pagination" class="flex justify-center items-center gap-2 mt-10 flex-wrap"></div>
+    </div>
+</section>
 
-        // ============ Stats ============
-        function updateStats() {
-            const cats = [...new Set(mainFatawa.map(f => f.category))];
-            animateCounter('totalFatawa', mainFatawa.length);
-            animateCounter('totalCategories', cats.length);
-            animateCounter('aboutTotalFatawa', mainFatawa.length);
-            animateCounter('aboutTotalCats', cats.length);
-        }
+<script>
+let mainFatawa = [];
+let activeCategory = 'all';
+let searchQuery = '';
+let currentPage = 1;
+const ITEMS_PER_PAGE = 12;
+let searchTimer = null;
 
-        function animateCounter(id, target) {
-            const el = document.getElementById(id);
-            if (!el) return;
-            let cur = 0;
-            const step = Math.max(1, Math.ceil(target / 30));
-            const t = setInterval(() => {
-                cur = Math.min(cur + step, target);
-                el.innerText = toPersian(cur);
-                if (cur >= target) clearInterval(t);
-            }, 30);
-        }
-
-        function toPersian(n) {
-            return String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
-        }
-
-        // ============ Categories ============
-        function renderCategories() {
-            const cats = [...new Set(mainFatawa.map(f => f.category))];
-            const container = document.getElementById('categoryFilters');
-            container.innerHTML = '';
-
-            const makeBtn = (label, val) => {
-                const isActive = activeCategory === val;
-                const btn = document.createElement('button');
-                btn.className = `cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap border transition-all ${
-                    isActive
-                        ? 'bg-primary-600 text-white border-primary-600 shadow-md active'
-                        : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700 hover:border-primary-400 dark:hover:border-primary-600'
-                }`;
-                btn.textContent = label;
-                btn.onclick = () => filterCategory(val);
-                return btn;
-            };
-
-            container.appendChild(makeBtn('همه موضوعات', 'all'));
-            cats.forEach(c => container.appendChild(makeBtn(c, c)));
-        }
-
-        function filterCategory(cat) {
-            activeCategory = cat;
-            currentPage = 1;
-            renderCategories();
-            applyFilters();
-        }
-
-        function handleSearch(q) {
-            searchQuery = q.toLowerCase().trim();
-            currentPage = 1;
-            applyFilters();
-        }
-
-        // ============ Filter & Render ============
-        function applyFilters() {
-            const filtered = mainFatawa.filter(f => {
-                const matchCat = activeCategory === 'all' || f.category === activeCategory;
-                const matchQ = !searchQuery ||
-                    (f.title || '').toLowerCase().includes(searchQuery) ||
-                    (f.question || '').toLowerCase().includes(searchQuery) ||
-                    (f.answer || '').toLowerCase().includes(searchQuery) ||
-                    (f.category || '').toLowerCase().includes(searchQuery);
-                return matchCat && matchQ;
-            });
-
-            renderGrid(filtered);
-            renderPagination(filtered.length);
-            document.getElementById('resultsCount').innerText = toPersian(filtered.length) + ' فتوی';
-            document.getElementById('noResults').classList.toggle('hidden', filtered.length > 0);
-            document.getElementById('fatawaGrid').classList.toggle('hidden', filtered.length === 0);
-        }
-
-        function renderGrid(list) {
-            const start = (currentPage - 1) * ITEMS_PER_PAGE;
-            const paged = list.slice(start, start + ITEMS_PER_PAGE);
-            const grid = document.getElementById('fatawaGrid');
-            if (!paged.length) { grid.innerHTML = ''; return; }
-
-            grid.innerHTML = paged.map(f => `
-                <article class="fatwa-card bg-white dark:bg-slate-800/90 rounded-2xl border border-gray-100 dark:border-gray-800 cursor-pointer overflow-hidden group"
-                    onclick="openModalById(${f.id})" role="button" tabindex="0"
-                    onkeydown="if(event.key==='Enter') openModalById(${f.id})">
-                    <div class="p-5">
-                        <div class="flex justify-between items-start mb-3">
-                            <span class="bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-3 py-1 rounded-full text-[11px] font-bold">
-                                ${escHtml(f.category)}
-                            </span>
-                            <span class="text-[11px] text-gray-400 dark:text-gray-500">${escHtml(f.date || '')}</span>
-                        </div>
-                        <h3 class="font-bold text-[17px] mb-2 line-clamp-2 dark:text-white leading-snug">
-                            ${escHtml(f.title)}
-                        </h3>
-                        <p class="text-gray-500 dark:text-gray-400 text-[13px] line-clamp-3 leading-relaxed">
-                            ${escHtml((f.question || '').substring(0, 130))}${(f.question || '').length > 130 ? '...' : ''}
-                        </p>
-                    </div>
-                    <div class="px-5 py-3 border-t border-gray-50 dark:border-gray-700/50 flex items-center justify-end bg-gray-50/50 dark:bg-slate-800/60">
-                        <span class="text-primary-600 dark:text-primary-400 text-xs font-bold flex items-center gap-1 group-hover:gap-2 transition-all">
-                            مطالعه فتوا
-                            <svg class="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
-                            </svg>
-                        </span>
-                    </div>
-                </article>
-            `).join('');
-
-            // Re-init lucide for dynamically added icons (if any)
-            if (window.lucide) lucide.createIcons();
-        }
-
-        // ============ Pagination ============
-        function renderPagination(total) {
-            const pages = Math.ceil(total / ITEMS_PER_PAGE);
-            const container = document.getElementById('pagination');
-            if (pages <= 1) { container.innerHTML = ''; return; }
-
-            let html = '';
-            for (let i = 1; i <= pages; i++) {
-                html += `<button onclick="goToPage(${i})" class="w-9 h-9 rounded-xl text-sm font-bold transition-all ${
-                    currentPage === i
-                        ? 'bg-primary-600 text-white shadow-md'
-                        : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-primary-400'
-                }">${toPersian(i)}</button>`;
-            }
-            container.innerHTML = html;
-        }
-
-        function goToPage(p) {
-            currentPage = p;
-            applyFilters();
-            document.getElementById('fatawaSection').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // ============ Modal ============
-        function openModalById(id) {
-            const f = mainFatawa.find(f => f.id == id);
-            if (!f) return;
-            currentModalFatwa = f;
-
-            document.getElementById('modalTitle').innerText = f.title || '';
-            document.getElementById('modalQuestion').innerText = f.question || '';
-            document.getElementById('modalAnswer').innerHTML = (f.answer || '').replace(/\n/g, '<br>');
-            document.getElementById('modalCategory').innerText = f.category || '';
-            document.getElementById('modalDateText').innerText = f.date || '';
-
-            document.getElementById('fatwaModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            history.pushState(null, '', '#fatwa-' + id);
-
-            if (window.lucide) lucide.createIcons();
-        }
-
-        function closeModal() {
-            document.getElementById('fatwaModal').classList.add('hidden');
-            document.body.style.overflow = '';
-            currentModalFatwa = null;
-            history.pushState(null, '', window.location.pathname);
-        }
-
-        function handleUrlHash() {
-            const hash = window.location.hash;
-            if (hash.startsWith('#fatwa-')) {
-                const id = parseInt(hash.replace('#fatwa-', ''));
-                if (!isNaN(id)) setTimeout(() => openModalById(id), 300);
-            }
-        }
-
-        // ============ Actions ============
-        function copyFatwaText() {
-            if (!currentModalFatwa) return;
-            const f = currentModalFatwa;
-            const text = `📜 ${f.title}\n\n❓ سوال:\n${f.question}\n\n✅ پاسخ:\n${f.answer}\n\n📅 ${f.date || ''}`;
-            navigator.clipboard.writeText(text)
-                .then(() => showToast('متن فتوا با موفقیت کپی شد'))
-                .catch(() => showToast('خطا در کپی کردن متن'));
-        }
-
-        function shareFatwa() {
-            if (!currentModalFatwa) return;
-            const url = location.origin + location.pathname + '#fatwa-' + currentModalFatwa.id;
-            if (navigator.share) {
-                navigator.share({ title: currentModalFatwa.title, url });
-            } else {
-                navigator.clipboard.writeText(url).then(() => showToast('لینک فتوا کپی شد'));
-            }
-        }
-
-        function clearFilters() {
-            activeCategory = 'all';
-            searchQuery = '';
-            currentPage = 1;
-            document.getElementById('searchInput').value = '';
-            document.getElementById('mobileSearchInput').value = '';
-            renderCategories();
-            applyFilters();
-        }
-
-        // ============ Toast ============
-        let toastTimer = null;
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMsg').innerText = msg;
-            toast.classList.remove('opacity-0');
-            toast.classList.add('opacity-100');
-            clearTimeout(toastTimer);
-            toastTimer = setTimeout(() => {
-                toast.classList.remove('opacity-100');
-                toast.classList.add('opacity-0');
-            }, 2600);
-        }
-
-        // ============ Theme ============
-        function toggleDarkMode() {
-            document.documentElement.classList.toggle('dark');
-            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
-            updateIcons();
-        }
-
-        function loadTheme() {
-            const saved = localStorage.getItem('darkMode');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            if (saved === 'true' || (saved === null && prefersDark)) {
-                document.documentElement.classList.add('dark');
-            }
-            updateIcons();
-        }
-
-        function updateIcons() {
-            const dark = document.documentElement.classList.contains('dark');
-            document.getElementById('sunIcon').classList.toggle('hidden', !dark);
-            document.getElementById('moonIcon').classList.toggle('hidden', dark);
-        }
-
-        // ============ Sections ============
-        function showSection(section) {
-            const hero = document.getElementById('heroSection');
-            const fatawa = document.getElementById('fatawaSection');
-            const catBar = document.querySelector('.sticky.top-16');
-            const about = document.getElementById('aboutSection');
-
-            [hero, fatawa, catBar, about].forEach(el => el.classList.add('hidden'));
-
-            if (section === 'home') {
-                hero.classList.remove('hidden');
-                fatawa.classList.remove('hidden');
-                catBar.classList.remove('hidden');
-            } else if (section === 'fatawa') {
-                fatawa.classList.remove('hidden');
-                catBar.classList.remove('hidden');
-            } else {
-                about.classList.remove('hidden');
-            }
-
-            setActiveNav(section);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function setActiveNav(section) {
-            const map = { home: 'Home', fatawa: 'Fatawa', about: 'About' };
-            ['Home', 'Fatawa', 'About'].forEach(s => {
-                const isActive = map[section] === s;
-                const desk = document.getElementById('nav' + s);
-                const mob = document.getElementById('mobileNav' + s);
-                if (desk) {
-                    desk.classList.toggle('text-primary-700', isActive);
-                    desk.classList.toggle('dark:text-primary-300', isActive);
-                    desk.classList.toggle('bg-primary-50', isActive);
-                    desk.classList.toggle('dark:bg-primary-900/30', isActive);
-                }
-                if (mob) {
-                    mob.classList.toggle('text-primary-600', isActive);
-                    mob.classList.toggle('dark:text-primary-400', isActive);
-                    mob.classList.toggle('bg-primary-50/80', isActive);
-                    mob.classList.toggle('dark:bg-primary-900/20', isActive);
-                }
-            });
-        }
-
-        // ============ Mobile Search ============
-        function toggleMobileSearch() {
-            const bar = document.getElementById('mobileSearchBar');
-            bar.classList.toggle('hidden');
-            if (!bar.classList.contains('hidden')) {
-                setTimeout(() => document.getElementById('mobileSearchInput').focus(), 100);
-            }
-        }
-
-        // ============ Utils ============
-        function escHtml(s) {
-            if (!s) return '';
-            return s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-        }
-
-        // ============ Expose to window ============
-        Object.assign(window, {
-            filterCategory, openModalById, closeModal,
-            toggleDarkMode, showSection, toggleMobileSearch,
-            copyFatwaText, shareFatwa, goToPage, clearFilters
-        });
-
-        document.addEventListener('DOMContentLoaded', initApp);
-    </script>
+function initApp(){
+    mainFatawa = Array.isArray(window.fatawaData) ? window.fatawaData : [];
+    document.getElementById('skeletonGrid').style.display = 'none';
+    renderCategories(); applyFilters(); updateStats(); loadTheme();
+    document.getElementById('searchInput').addEventListener('input', e => { clearTimeout(searchTimer); searchTimer = setTimeout(() => { searchQuery = e.target.value.toLowerCase().trim(); currentPage = 1; applyFilters(); }, 220); });
+    if (window.lucide) lucide.createIcons();
+}
+function updateStats(){
+    const cats = [...new Set(mainFatawa.map(f => f.category))];
+    animateCounter('totalFatawa', mainFatawa.length);
+    animateCounter('totalCategories', cats.length);
+}
+function animateCounter(id, target){
+    const el = document.getElementById(id); let cur = 0; const step = Math.max(1, Math.ceil(target/30)); const t = setInterval(()=>{cur = Math.min(cur + step, target); el.innerText = toPersian(cur); if(cur>=target) clearInterval(t);}, 30);
+}
+function toPersian(n){ return String(n).replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]); }
+function renderCategories(){
+    const cats = [...new Set(mainFatawa.map(f => f.category))];
+    const container = document.getElementById('categoryFilters');
+    container.innerHTML = '';
+    const btn = (label, val) => {
+        const b = document.createElement('button');
+        b.className = `cat-pill px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap border transition-all ${activeCategory===val ? 'active' : 'bg-white dark:bg-slate-800 text-gray-700 dark:text-gray-300 border-gray-200 dark:border-gray-700'}`;
+        b.textContent = label;
+        b.onclick = () => { activeCategory = val; currentPage = 1; renderCategories(); applyFilters(); };
+        return b;
+    };
+    container.appendChild(btn('همه موضوعات', 'all'));
+    cats.forEach(c => container.appendChild(btn(c, c)));
+}
+function applyFilters(){
+    const filtered = mainFatawa.filter(f => {
+        const c = activeCategory === 'all' || f.category === activeCategory;
+        const q = !searchQuery || (f.title||'').toLowerCase().includes(searchQuery) || (f.question||'').toLowerCase().includes(searchQuery) || (f.answer||'').toLowerCase().includes(searchQuery) || (f.category||'').toLowerCase().includes(searchQuery);
+        return c && q;
+    });
+    renderGrid(filtered); renderPagination(filtered.length);
+    document.getElementById('resultsCount').innerText = toPersian(filtered.length) + ' فتوی';
+    document.getElementById('noResults').classList.toggle('hidden', filtered.length > 0);
+    document.getElementById('fatawaGrid').classList.toggle('hidden', filtered.length === 0);
+}
+function renderGrid(list){
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    const paged = list.slice(start, start + ITEMS_PER_PAGE);
+    const grid = document.getElementById('fatawaGrid');
+    grid.innerHTML = paged.map(f => `
+        <article class="fatwa-card bg-white dark:bg-slate-800/90 rounded-2xl border border-gray-100 dark:border-gray-800 cursor-pointer overflow-hidden" onclick="openFatwaPage(${f.id})">
+            <div class="p-5">
+                <div class="flex justify-between items-start mb-3">
+                    <span class="bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 px-3 py-1 rounded-full text-[11px] font-bold">${escHtml(f.category)}</span>
+                    <span class="text-[11px] text-gray-400 dark:text-gray-500">${escHtml(f.date || '')}</span>
+                </div>
+                <h3 class="font-bold text-[17px] mb-2 line-clamp-2 dark:text-white leading-snug">${escHtml(f.title)}</h3>
+                <p class="text-gray-500 dark:text-gray-400 text-[13px] line-clamp-3 leading-relaxed">${escHtml((f.question||'').substring(0,130))}${(f.question||'').length > 130 ? '...' : ''}</p>
+            </div>
+            <div class="px-5 py-3 border-t border-gray-50 dark:border-gray-700/50 flex items-center justify-end bg-gray-50/50 dark:bg-slate-800/60">
+                <span class="text-primary-600 dark:text-primary-400 text-xs font-bold flex items-center gap-1">
+                    مطالعه فتوا
+                    <svg class="w-3.5 h-3.5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                </span>
+            </div>
+        </article>
+    `).join('');
+    if (window.lucide) lucide.createIcons();
+}
+function renderPagination(total){
+    const pages = Math.ceil(total / ITEMS_PER_PAGE);
+    const container = document.getElementById('pagination');
+    if (pages <= 1){ container.innerHTML = ''; return; }
+    container.innerHTML = Array.from({length: pages}, (_, i) => i + 1).map(i => `<button onclick="goToPage(${i})" class="w-9 h-9 rounded-xl text-sm font-bold ${currentPage===i ? 'bg-primary-600 text-white shadow-md' : 'bg-white dark:bg-slate-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300'}">${toPersian(i)}</button>`).join('');
+}
+function goToPage(p){ currentPage = p; applyFilters(); document.querySelector('section.py-8').scrollIntoView({behavior:'smooth'}); }
+function openFatwaPage(id){ window.location.href = 'fatwa.html?id=' + id; }
+function clearFilters(){ activeCategory='all'; searchQuery=''; currentPage=1; document.getElementById('searchInput').value=''; renderCategories(); applyFilters(); }
+function toggleDarkMode(){ document.documentElement.classList.toggle('dark'); localStorage.setItem('darkMode', document.documentElement.classList.contains('dark')); updateIcons(); }
+function loadTheme(){ const saved = localStorage.getItem('darkMode'); const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches; if (saved === 'true' || (saved === null && prefersDark)) document.documentElement.classList.add('dark'); updateIcons(); }
+function updateIcons(){ const d = document.documentElement.classList.contains('dark'); document.getElementById('sunIcon').classList.toggle('hidden', !d); document.getElementById('moonIcon').classList.toggle('hidden', d); if (window.lucide) lucide.createIcons(); }
+function escHtml(s){ if(!s) return ''; return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+document.addEventListener('DOMContentLoaded', initApp);
+</script>
 </body>
 </html>
