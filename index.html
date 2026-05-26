@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="مرجع جامع فتاوای اهل سنت - بانک فتاوی علمای بزرگ با جستجوی پیشرفته و نمایش فتوای معتبر">
     <meta name="theme-color" content="#2d5e2d">
-    <title>مرجع فتاوای اسلامی | پایگاه فتاوی اهل سنت</title>
+    <title>مرجع فتاوای ممتاز | پایگاه فتاوی اهل سنت</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -56,7 +56,7 @@
                         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/></svg>
                     </div>
                     <div>
-                        <h1 class="text-xl font-extrabold text-primary-800 dark:text-primary-300">مرجع فتاوای اسلامی</h1>
+                        <h1 class="text-xl font-extrabold text-primary-800 dark:text-primary-300">مرجع فتاوای ممتاز</h1>
                         <p class="text-[11px] font-medium text-gray-500 dark:text-gray-400">پایگاه فتاوی اهل سنت و الجماعت</p>
                     </div>
                 </div>
@@ -87,11 +87,11 @@
     <!-- بخش Hero با جستجو -->
     <section id="hero" class="pt-28 pb-16 md:pt-36 md:pb-24 px-4 text-center">
         <div class="max-w-4xl mx-auto">
-            <div class="inline-flex gap-2 bg-primary-50 dark:bg-primary-900/40 px-5 py-2 rounded-full text-sm font-bold mb-5">📖 بانک جامع فتوای شرعی</div>
+            <div class="inline-flex gap-2 bg-primary-50 dark:bg-primary-900/40 px-5 py-2 rounded-full text-sm font-bold mb-5">📖 بانک جامع فتاوای شرعی اهل سنت</div>
             <h1 class="text-4xl md:text-6xl font-extrabold mb-5">مرجع معتبر <span class="text-transparent bg-clip-text bg-gradient-to-l from-primary-700 to-emerald-600">فتاوای اهل سنت</span></h1>
-            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">دسترسی به هزاران فتوی از علمای بزرگ مانند ابن باز، ابن عثیمین، البانی، کمیته دائمی فتوای عربستان</p>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto mb-8">دسترسی به سوالات و جوابات و فتاوی شرعی از الشیخ الدکتور فضل الله عمر ممتاز</p>
             <div class="max-w-xl mx-auto relative">
-                <input type="text" id="searchInput" placeholder="جستجو در فتاوا... (مثال: نماز، روزه، زکات)" class="w-full px-6 py-4 pr-14 text-lg bg-white dark:bg-slate-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:border-primary-400 outline-none transition shadow-sm">
+                <input type="text" id="searchInput" placeholder="جستجو در فتاوی..." class="w-full px-6 py-4 pr-14 text-lg bg-white dark:bg-slate-800 border-2 border-gray-200 dark:border-gray-700 rounded-2xl focus:border-primary-400 outline-none transition shadow-sm">
                 <svg class="absolute right-5 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
             </div>
             <!-- آمار -->
@@ -99,8 +99,6 @@
                 <div><div class="text-3xl font-black text-primary-600" id="totalFatawa">0</div><div class="text-sm">فتوی ثبت شده</div></div>
                 <div class="w-px h-10 bg-gray-300 dark:bg-gray-700"></div>
                 <div><div class="text-3xl font-black text-primary-600" id="totalCategories">0</div><div class="text-sm">موضوع فقهی</div></div>
-                <div class="w-px h-10 bg-gray-300 dark:bg-gray-700"></div>
-                <div><div class="text-3xl font-black text-primary-600" id="totalScholars">0</div><div class="text-sm">عالم و مرجع</div></div>
             </div>
         </div>
     </section>
@@ -114,7 +112,7 @@
     <section id="fatawaSection" class="py-6 px-4 pb-24">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-wrap justify-between items-center mb-7 gap-3">
-                <h2 class="text-2xl md:text-3xl font-bold">📜 آخرین فتاوای شرعی</h2>
+                <h2 class="text-2xl md:text-3xl font-bold">📜 آخرین فتاوی و سوالات شرعی</h2>
                 <span class="bg-gray-100 dark:bg-slate-800 px-4 py-1.5 rounded-full text-sm font-medium" id="resultsCount"></span>
             </div>
             <div id="fatawaGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
@@ -135,12 +133,12 @@
                 <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/40 rounded-3xl flex items-center justify-center mx-auto mb-4">
                     <svg class="w-10 h-10 text-primary-700 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                 </div>
-                <h2 class="text-3xl font-bold dark:text-white">درباره مرجع فتاوا</h2>
+                <h2 class="text-3xl font-bold dark:text-white">درباره مرجع فتاوی</h2>
             </div>
-            <p class="leading-loose text-gray-700 dark:text-gray-300 text-justify">این وبسایت با هدف دسترسی آسان به فتاوای معتبر علمای اهل سنت (ابن باز، ابن عثیمین، البانی، اللجنة الدائمة و دیگران) راه‌اندازی شده است. تمامی فتواها بر اساس منابع اصیل فقهی تدوین شده‌اند و به صورت رایگان در اختیار عموم قرار می‌گیرد.</p>
+            <p class="leading-loose text-gray-700 dark:text-gray-300 text-justify">این وبسایت با هدف دسترسی آسان به فتاوای معتبر الشیخ الدکتور فضل الله عمر ممتاز راه‌اندازی شده است. تمامی فتاوی از منابع خود شیخ گرفته شده‌ و در اختیار عموم قرار می‌گیرد.</p>
             <div class="mt-6 bg-amber-50 dark:bg-primary-900/20 p-5 rounded-xl border-r-4 border-primary-500">
-                <p class="font-bold text-primary-800 dark:text-primary-300">نکته شرعی:</p>
-                <p class="text-sm text-gray-700 dark:text-gray-300">استفاده از این پایگاه جنبه اطلاع‌رسانی دارد؛ برای مسائل اختصاصی و مهم با عالم دینی مورد اعتماد مشورت کنید.</p>
+                <p class="font-bold text-primary-800 dark:text-primary-300">نکته:</p>
+                <p class="text-sm text-gray-700 dark:text-gray-300">استفاده از این پایگاه جنبه اطلاع‌رسانی دارد؛ برای مسائل اختصاصی و مهم با خود شیخ مشورت کنید.</p>
             </div>
         </div>
     </section>
