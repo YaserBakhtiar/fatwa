@@ -1,6 +1,5 @@
 // fatawa-data.js - بانک فتاوای معتبر اهل سنت و الجماعت
 window.fatawaData = [
-   {
 {
     id: 1,
     title: "عقیقه در جوانی و بزرگسالی",
