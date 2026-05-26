@@ -8,11 +8,11 @@
 
 ```javascript
 {
-    id: 13,  // شماره بعدی
-    title: "عنوان فتوی",
-    category: "دسته‌بندی",
-    scholar: "نام مرجع",
-    date: "۱۴۰۳/۰۳/۲۰",
-    question: "متن سؤال",
-    answer: "متن جواب"
+        id: 10,
+        title: "عنوان",
+        question: "سوال",
+        answer: "جواب».",
+        category: "دسته",
+        scholar: "استاد",
+        date: "تاریخ"
 }
