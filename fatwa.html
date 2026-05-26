@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="صفحه مطالعه فتوا">
+    <meta name="theme-color" content="#2d5e2d">
+    <title>مطالعه فتوا | مرجع فتاوای ممتاز</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="fatawa-data.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Vazirmatn', 'system-ui', 'sans-serif'] },
+                    colors: { primary: { 600: '#2d5e2d', 700: '#234823', 800: '#1c3a1c', 900: '#163016' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body{font-family:'Vazirmatn',sans-serif;line-height:1.9}
+        .glass-nav{background:rgba(255,255,255,.88);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(226,232,240,.5)}
+        .dark .glass-nav{background:rgba(10,17,35,.92);border-bottom:1px solid rgba(51,65,85,.5)}
+        .prose-box{max-width:900px}
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-slate-950 text-gray-800 dark:text-gray-200">
+
+<nav class="fixed top-0 w-full z-50 glass-nav">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16">
+            <a href="index.html" class="inline-flex items-center gap-2 text-sm font-bold text-primary-700 dark:text-primary-300">
+                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                بازگشت به فتاوا
+            </a>
+            <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl bg-gray-100 dark:bg-slate-800">
+                <i data-lucide="sun" id="sunIcon" class="w-5 h-5 text-amber-500 hidden"></i>
+                <i data-lucide="moon" id="moonIcon" class="w-5 h-5 text-slate-500 dark:text-slate-300"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<main class="pt-24 pb-16 px-4">
+    <div class="prose-box mx-auto">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden">
+            <div class="p-6 md:p-8 border-b border-gray-100 dark:border-gray-800">
+                <div class="flex flex-wrap items-center gap-2 mb-4">
+                    <span id="categoryBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-primary-50 text-primary-700 dark:bg-primary-900/30 dark:text-primary-300"></span>
+                    <span id="dateText" class="text-xs text-gray-400 dark:text-gray-500"></span>
+                </div>
+                <h1 id="title" class="text-2xl md:text-4xl font-extrabold leading-relaxed text-gray-900 dark:text-white"></h1>
+            </div>
+
+            <div class="p-6 md:p-8 space-y-6">
+                <section class="bg-amber-50 dark:bg-amber-900/15 border border-amber-200/70 dark:border-amber-800/40 rounded-2xl p-5">
+                    <div class="flex items-center gap-2 mb-3 text-amber-700 dark:text-amber-400 font-bold text-sm">
+                        <i data-lucide="help-circle" class="w-4 h-4"></i>
+                        سوال
+                    </div>
+                    <div id="question" class="text-gray-800 dark:text-gray-200 leading-loose text-base md:text-lg"></div>
+                </section>
+
+                <section class="bg-primary-50 dark:bg-primary-900/15 border border-primary-200/70 dark:border-primary-800/40 rounded-2xl p-5">
+                    <div class="flex items-center gap-2 mb-3 text-primary-700 dark:text-primary-400 font-bold text-sm">
+                        <i data-lucide="check-circle" class="w-4 h-4"></i>
+                        پاسخ فتوا
+                    </div>
+                    <div id="answer" class="text-gray-800 dark:text-gray-100 leading-loose text-base md:text-lg"></div>
+                </section>
+
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <button onclick="copyFatwaText()" class="inline-flex items-center gap-2 px-4 py-3 rounded-2xl bg-primary-600 text-white font-bold text-sm hover:bg-primary-700 transition">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        کپی متن
+                    </button>
+                    <button onclick="shareFatwa()" class="inline-flex items-center gap-2 px-4 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 font-bold text-sm hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                        <i data-lucide="share-2" class="w-4 h-4"></i>
+                        اشتراک‌گذاری
+                    </button>
+                    <button onclick="window.print()" class="inline-flex items-center gap-2 px-4 py-3 rounded-2xl border border-gray-200 dark:border-gray-700 font-bold text-sm hover:bg-gray-50 dark:hover:bg-slate-800 transition">
+                        <i data-lucide="printer" class="w-4 h-4"></i>
+                        چاپ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+let fatwa = null;
+
+function qs(name){ return new URLSearchParams(location.search).get(name); }
+
+function loadTheme(){
+    const saved = localStorage.getItem('darkMode');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (saved === 'true' || (saved === null && prefersDark)) document.documentElement.classList.add('dark');
+    updateIcons();
+}
+function toggleDarkMode(){
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+    updateIcons();
+}
+function updateIcons(){
+    const d = document.documentElement.classList.contains('dark');
+    document.getElementById('sunIcon').classList.toggle('hidden', !d);
+    document.getElementById('moonIcon').classList.toggle('hidden', d);
+    if (window.lucide) lucide.createIcons();
+}
+function escHtml(s){ if(!s) return ''; return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function renderFatwa(){
+    const id = qs('id');
+    if (!id || !Array.isArray(window.fatawaData)) {
+        document.getElementById('title').innerText = 'فتوا یافت نشد';
+        document.getElementById('question').innerText = 'شناسه فتوا معتبر نیست.';
+        document.getElementById('answer').innerText = '';
+        return;
+    }
+    fatwa = window.fatawaData.find(x => String(x.id) === String(id));
+    if (!fatwa) {
+        document.getElementById('title').innerText = 'فتوا یافت نشد';
+        document.getElementById('question').innerText = 'این فتوا در پایگاه موجود نیست.';
+        document.getElementById('answer').innerText = '';
+        return;
+    }
+    document.title = fatwa.title + ' | مرجع فتاوای ممتاز';
+    document.getElementById('categoryBadge').innerText = fatwa.category || '';
+    document.getElementById('dateText').innerText = fatwa.date || '';
+    document.getElementById('title').innerText = fatwa.title || '';
+    document.getElementById('question').innerText = fatwa.question || '';
+    document.getElementById('answer').innerHTML = (fatwa.answer || '').replace(/\n/g,'<br>');
+}
+function copyFatwaText(){
+    if (!fatwa) return;
+    const text = `${fatwa.title}\n\nسوال:\n${fatwa.question}\n\nپاسخ:\n${fatwa.answer}\n\nتاریخ: ${fatwa.date || ''}`;
+    navigator.clipboard.writeText(text);
+}
+function shareFatwa(){
+    if (!fatwa) return;
+    const url = location.href;
+    if (navigator.share) navigator.share({ title: fatwa.title, url });
+    else navigator.clipboard.writeText(url);
+}
+document.addEventListener('DOMContentLoaded', () => {
+    loadTheme();
+    renderFatwa();
+    if (window.lucide) lucide.createIcons();
+});
+</script>
+</body>
+</html>
